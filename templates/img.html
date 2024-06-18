@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='ja'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device=width, initial-scale=1.0'>
+    <title>Fabric.js</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: flex-start;
+        align-item:flex-start
+        margin: 0;
+        height: 100vh;
+      }
+      h1 {
+        margin: 0;
+        padding: 20px 0; 
+      }
+      canvas {
+        border: 1px solid #000;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fabric.js</h1>
+    <canvas id='canvas' width="1000" height='600'></canvas>
+    <button id="downloadBtn">画像をダウンロード</button>
+    <a id="downloadLink" style="display:none;">ダウンロードリンク</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
+    <script>
+      const canvas = new fabric.Canvas('canvas');
+      
+      const rect= new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'red',
+        width: 100,
+        height: 100
+      });
+      canvas.add(rect);
+
+      fabric.Image.fromURL('/static/Go.jpg', function(img) {
+        img.set({
+            left: 300,
+            top: 100,
+            scaleX: 0.5,
+            scaleY: 0.5
+        });
+        canvas.add(img);
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click',function(){
+      const dataURL=canvas.toDataURL({
+        format:'png',
+        quality:0.8
+      });
+      const link=document.getElementById("downloadLink");
+      link.href=dataURL;
+      link.download="sample.png";
+      link.style.display = 'block';
+      link.click();
+      link.style.display = 'none';
+    });
+    </script>
+  </body>  
