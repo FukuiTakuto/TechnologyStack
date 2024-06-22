@@ -8,7 +8,7 @@
     <style>
       canvas {
         border: 1px solid #000;
-        margin-top: 20px;
+        margin:50px 25px;
       }
       body {
         display:flex;
@@ -17,15 +17,21 @@
         margin:0;
         height:100vh;
       }
-      h1 {
-        margin: 0;
-        padding: 20px 0; 
+      div{
+        padding-top:60px;
       }
       
       #imagelist img {
         width: 100px;
         margin: 10px;
         cursor: pointer;
+      }
+      h1 {
+        margin: 0;
+        padding: 20px 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
       }
     </style>
   </head>
@@ -36,7 +42,7 @@
       <img src='/static/django.jpg' alt="Image django">
       <img src='/static/frame.png' alt="Image frame">
     </div>
-    <h1>Fabric.js</h1>
+    <h1>技術スタック図作成アプリ</h1>
     <canvas id='canvas' width="1000" height='600'></canvas>
     <button id="downloadBtn">画像をダウンロード</button>
     <a id="downloadLink" style="display:none;">ダウンロードリンク</a>
