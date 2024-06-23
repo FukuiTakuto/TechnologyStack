@@ -4,11 +4,12 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device=width, initial-scale=1.0'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js" defer></script>
-    <title>Fabric.js</title>
+    <title>技術スタック図作成アプリ</title>
+    
     <style>
       canvas {
         border: 1px solid #000;
-        margin:50px 25px;
+        margin:60px 35px;
       }
       body {
         display:flex;
@@ -18,51 +19,233 @@
         height:100vh;
       }
       div{
-        padding-top:60px;
+        padding:20px 10px;
       }
       
-      #imagelist img {
+      #imagelist1 img,
+      #imagelist2 img,
+      #imagelist3 img,
+      #imagelist4 img,
+      #imagelist5 img,
+      #imagelist6 img,
+      #imagelist7 img{
         width: 100px;
-        margin: 10px;
+        height:100px;
         cursor: pointer;
+        position: relative;
+        margin-top:0px;
       }
       h1 {
-        margin: 0;
-        padding: 20px 10px;
+        margin: 20px 20px;
         position: absolute;
-        top: 0;
-        left: 0;
       }
+      summary{
+        margin-top:65px;
+      }
+      ul {
+        list-style-type: none; 
+      }
+      #imagelist1 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px; /* 画像間のスペース */
+        margin: auto; /* センターに配置 */
+    }
     </style>
   </head>
   <body>
-    <div id='imagelist'>
-      <img src='/static/Go.jpg' alt="Image Go">
-      <img src='/static/python.jpg' alt="Image python">
-      <img src='/static/django.jpg' alt="Image django">
-      <img src='/static/frame.png' alt="Image frame">
-    </div>
+    <ul>
+      <li>
+        <details>
+          <summary>バックエンド</summary>
+            <div id="imagelist1">
+              <img src='/static/python.jpg' alt="Image python">
+              <img src='/static/django.jpg' alt="Image django">
+              <img src='/static/Go.jpg' alt="Image Go">
+              <img src='/static/Go_Gin.png' alt="Image Go_Gin">
+              <img src='/static/Java.jpg' alt="Image Java">
+              <img src='/static/PHP.jpg' alt="Image PHP">
+              <img src='/static/Ruby.png' alt="Image Ruby">
+              <img src='/static/Rubyonrails.png' alt="Image Rubyonrails">
+              <img src='/static/Javascript.jpg' alt="Image Javascript">
+              <img src='/static/typescript.jpg' alt="Image Typescript">
+              <img src='/static/C_C++.png' alt="Image C/C++">
+            </div>
+        </details>
+      </li>
+      <li>
+        <details >
+          <summary>フロントエンド</summary>
+            <div id="imagelist2">
+              <img src='/static/HTML.jpg' alt="Image HTML">
+              <img src='/static/CSS.png' alt="Image CSS">
+              <img src='/static/Javascript.jpg' alt="Image Javascript">
+              <img src='/static/Nextjs.png' alt="Image Next.js">
+              <img src='/static/typescript.jpg' alt="Image Typescript">
+              <img src='/static/React.jpg' alt="Image React">
+            </div>
+        </details >
+      </li>
+      <li>
+        <details>
+          <summary>データベース</summary>
+            <div id="imagelist3">
+              <img src='/static/PostgreSQL.jpg' alt="Image PostgreSQL">
+              <img src='/static/MySQL.png' alt="Image MySQL">
+            </div>
+        </details >
+      </li>
+      <li>
+        <details>
+          <summary>モバイル</summary>
+            <div id="imagelist4">
+              <img src='/static/Csharp.png' alt="Image C#">
+              <img src='/static/Flutter.jpg' alt="Image Flutter">
+              <img src='/static/kotlin.jpg' alt="Image Kotlin">
+              <img src='/static/swift.png' alt="Image swift">
+            </div>
+        </details >
+      </li>
+      <li>
+        <details>
+          <summary>インフラ</summary>
+            <div id="imagelist5">
+              <img src='/static/aws.png' alt="Image AWS">
+            </div>
+        </details >
+      </li>
+      <li>
+        <details>
+          <summary>フレーム等</summary>
+            <div id="imagelist6">
+              <img src='/static/frame.png' alt="Image frame">
+              <img src='/static/yazirusi.jpg' alt="Image 矢印">
+              <img src='/static/wyazirusi.jpg' alt="Image 双方向矢印">
+            </div>
+        </details >
+      </li>
+      <li>
+        <details>
+          <summary>その他</summary>
+            <div id="imagelist7">
+              <img src='/static/git.jpg' alt="Image git">
+              <img src='/static/Github.png' alt="Image github">
+            </div>
+        </details >
+      </li>
+    </ul>
+    
     <h1>技術スタック図作成アプリ</h1>
-    <canvas id='canvas' width="1000" height='600'></canvas>
+    <canvas id='canvas' width="1500" height='1200'></canvas>
     <button id="downloadBtn">画像をダウンロード</button>
     <a id="downloadLink" style="display:none;">ダウンロードリンク</a>
-    
+  
     <script>
       document.addEventListener('DOMContentLoaded', function() {
           const canvas = new fabric.Canvas('canvas');
-          const imageList = document.getElementById('imagelist');
+          const imageList1 = document.getElementById('imagelist1');
+          const imageList2 = document.getElementById('imagelist2');
+          const imageList3 = document.getElementById('imagelist3');
+          const imageList4 = document.getElementById('imagelist4');
+          const imageList5 = document.getElementById('imagelist5');
+          const imageList6 = document.getElementById('imagelist6');
+          const imageList7 = document.getElementById('imagelist7');
 
-          imageList.addEventListener('click', function(event) {
+          imageList1.addEventListener('click', function(event) {
               if (event.target.tagName === 'IMG') {
                   const imgElement = event.target;
                   const imgURL = imgElement.src;
 
                   fabric.Image.fromURL(imgURL, function(img) {
                       canvas.add(img);
+                      img.scaleToWidth(200);
+                      img.scaleToHeight(200);
                       canvas.renderAll();
                   });
               }
           });
+
+          imageList2.addEventListener('click', function(event) {
+            if (event.target.tagName === 'IMG') {
+                const imgElement = event.target;
+                const imgURL = imgElement.src;
+
+                fabric.Image.fromURL(imgURL, function(img) {
+                    canvas.add(img);
+                    img.scaleToWidth(200);
+                    img.scaleToHeight(200);
+                    canvas.renderAll();
+                });
+            }
+        });
+
+        imageList3.addEventListener('click', function(event) {
+          if (event.target.tagName === 'IMG') {
+              const imgElement = event.target;
+              const imgURL = imgElement.src;
+
+              fabric.Image.fromURL(imgURL, function(img) {
+                  canvas.add(img);
+                  img.scaleToWidth(200);
+                  img.scaleToHeight(200);
+                  canvas.renderAll();
+              });
+          }
+      });
+        
+        imageList4.addEventListener('click', function(event) {
+          if (event.target.tagName === 'IMG') {
+              const imgElement = event.target;
+              const imgURL = imgElement.src;
+ 
+              fabric.Image.fromURL(imgURL, function(img) {
+                  canvas.add(img);
+                  img.scaleToWidth(200);
+                  img.scaleToHeight(200);
+                  canvas.renderAll();
+              });
+          }
+      });
+
+      imageList5.addEventListener('click', function(event) {
+          if (event.target.tagName === 'IMG') {
+              const imgElement = event.target;
+              const imgURL = imgElement.src;
+
+              fabric.Image.fromURL(imgURL, function(img) {
+                  canvas.add(img);
+                  img.scaleToWidth(200);
+                  img.scaleToHeight(200);
+                  canvas.renderAll();
+              });
+          }
+      });
+      imageList6.addEventListener('click', function(event) {
+        if (event.target.tagName === 'IMG') {
+            const imgElement = event.target;
+            const imgURL = imgElement.src;
+
+            fabric.Image.fromURL(imgURL, function(img) {
+                canvas.add(img);
+                img.scaleToWidth(200);
+                img.scaleToHeight(200);
+                canvas.renderAll();
+            });
+        }
+    });
+    imageList7.addEventListener('click', function(event) {
+      if (event.target.tagName === 'IMG') {
+          const imgElement = event.target;
+          const imgURL = imgElement.src;
+
+          fabric.Image.fromURL(imgURL, function(img) {
+              canvas.add(img);
+              img.scaleToWidth(200);
+              img.scaleToHeight(200);
+              canvas.renderAll();
+          });
+      }
+  });
 
           document.getElementById('downloadBtn').addEventListener('click', function() {
               const dataURL = canvas.toDataURL({
@@ -78,5 +261,6 @@
           });
       });
     </script>
+  
   </body>
 </html>
