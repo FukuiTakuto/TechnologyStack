@@ -1,0 +1,16 @@
+#python
+__pycache__/
+*.pyc
+#Django
+db.sqlite3
+.env
+# ログファイル
+*.log
+# IDEやエディタの設定ファイル
+.vscode/
+.idea/
+# システムファイル
+*.DS_Store
+*.Thumbs.db
+# メディアファイル（ユーザーがアップロードしたファイル）
+media/
