@@ -3,7 +3,7 @@ import os
 import environ
 
 env=environ.Env()
-env.read_env('.env')
+env.read_env('.prov.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,3 +123,13 @@ STATICFILES_DIRS=[
     os.path.join(BASE_DIR,"static"),
 ]
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+from django.core.management.utils import get_random_secret_key
+SECRET_KEY = get_random_secret_key()  
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass

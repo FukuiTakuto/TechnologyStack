@@ -3,7 +3,9 @@ __pycache__/
 *.pyc
 #Django
 db.sqlite3
-.env
+.dev.env
+.prov.env
+config/local_settings.py
 # ログファイル
 *.log
 # IDEやエディタの設定ファイル
